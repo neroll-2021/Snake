@@ -1,20 +1,20 @@
 package main.controller;
 
+import static main.constant.Constants.GAME_HEIGHT;
+import static main.constant.Constants.GAME_WIDTH;
+
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import main.model.grid.Grid;
 import main.model.snake.Direction;
-import main.constant.Constants;
-import main.view.GameView;
-import main.model.snake.Snake;
 
 public class GameController implements EventHandler<KeyEvent> {
 
     private final Grid grid;
 
     public GameController() {
-        grid = new Grid(Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
+        grid = new Grid(GAME_WIDTH, GAME_HEIGHT);
     }
 
     @Override
