@@ -5,14 +5,16 @@ import main.model.snake.Snake;
 public class Grid {
     private final int width;
     private final int height;
+    private final boolean[][] grid;
 
-    private Snake snake;
+    private final Snake snake;
 
     private GameStatus status;
 
     public Grid(int width, int height) {
         this.width = width;
         this.height = height;
+        this.grid = new boolean[height][width];
         status = GameStatus.RUNNING;
         snake = new Snake();
     }
@@ -23,6 +25,10 @@ public class Grid {
 
     public int getHeight() {
         return height;
+    }
+
+    public Snake getSnake() {
+        return snake;
     }
 }
 
