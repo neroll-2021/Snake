@@ -24,15 +24,12 @@ public class Snake {
     public Snake() {
         body = new LinkedList<>();
         initBody();
-        Node node = new Node(18, 10);
-        body.addFirst(node);
-        node = new Node(17, 10);
         direction = Direction.RIGHT; // 游戏开始时默认向右运动
     }
 
     private void initBody() {
         for (int i = 0; i < INITIAL_LENGTH; i++) {
-            Node node = new Node(INITIAL_POS_X - i * NODE_LENGTH, INITIAL_POS_Y);
+            Node node = new Node(INITIAL_POS_X - i, INITIAL_POS_Y);
             body.addLast(node);
         }
     }

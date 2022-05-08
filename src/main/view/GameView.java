@@ -49,8 +49,9 @@ public class GameView extends Application {
         main.model.snake.Node node;
         while (iterator.hasNext()) {
             node = iterator.next();
+            System.out.println("x=" + node.getX() + " y=" + node.getY());
             context.fillRect((node.getX() - 1) * NODE_LENGTH, (node.getY() - 1) * NODE_LENGTH,
-                            node.getX() * NODE_LENGTH, node.getY() * NODE_LENGTH);
+                            NODE_LENGTH, NODE_LENGTH);
         }
     }
 
