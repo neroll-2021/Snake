@@ -8,6 +8,7 @@ import static main.constant.Constants.NODE_LENGTH;
 
 import javafx.application.Application;
 import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -65,12 +66,17 @@ public class GameView extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-        Text score = new Text("Score:");
-        score.setFont(Font.font("verdana", FontWeight.NORMAL, FontPosture.REGULAR, 25));
+        Text scoreTip = new Text("Score:");
+        scoreTip.setFont(Font.font("verdana", FontWeight.NORMAL, FontPosture.REGULAR, 25));
+
+        int score = controller.getScore();
+        Text scoreText = new Text(score + "");
+        scoreText.setFont(Font.font("verdana", FontWeight.NORMAL, FontPosture.REGULAR, 40));
 
         VBox vBox = new VBox();
         ObservableList<Node> vlist = vBox.getChildren();
-        vlist.addAll(score);
+        vlist.addAll(scoreTip, scoreText);
+        vBox.setPadding(new Insets(15));
 
         Canvas canvas = new Canvas();
         canvas.setWidth(GAME_WIDTH);
@@ -83,7 +89,7 @@ public class GameView extends Application {
         ObservableList<Node> hlist = hBox.getChildren();
         hlist.addAll(canvas, vBox);
 
-        Group root = new Group(hBox, vBox);
+        Group root = new Group(hBox);
 
         Scene scene = new Scene(root, WINDOW_WIDTH, WINDOW_HEIGHT);
         scene.addEventHandler(KeyEvent.KEY_PRESSED, controller);

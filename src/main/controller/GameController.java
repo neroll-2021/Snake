@@ -48,4 +48,8 @@ public class GameController implements EventHandler<KeyEvent> {
     public Node getFood() {
         return grid.getFood();
     }
+
+    public int getScore() {
+        return grid.getScore();
+    }
 }

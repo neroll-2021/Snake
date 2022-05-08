@@ -19,6 +19,7 @@ public class Grid {
     private final int width;
     private final int height;
     private final boolean[][] grid;
+    private int score;
 
     private Node food;
 
@@ -32,6 +33,7 @@ public class Grid {
         this.grid = new boolean[height][width];
         status = GameStatus.RUNNING;
         snake = new Snake();
+        score = 0;
         createFood();
     }
 
@@ -68,6 +70,10 @@ public class Grid {
 
     public Node getFood() {
         return food;
+    }
+
+    public int getScore() {
+        return score;
     }
 }
 
