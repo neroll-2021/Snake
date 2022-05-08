@@ -18,6 +18,7 @@ public class Round implements Runnable {
             while (!Thread.currentThread().isInterrupted()) {
                 if (!controller.snakeIsDead()) {
                     controller.moveSnake();
+                    controller.ifEatFood();
                     controller.repaintScreen();
                     Thread.sleep(ROUND_INTERVAL);
                 } else {

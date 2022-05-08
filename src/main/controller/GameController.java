@@ -26,7 +26,7 @@ public class GameController implements EventHandler<KeyEvent> {
     private final GameView view;
 
     public GameController(GameView view) {
-        grid = new Grid(GAME_WIDTH, GAME_HEIGHT);
+        grid = new Grid();
         this.view = view;
     }
 
@@ -71,5 +71,9 @@ public class GameController implements EventHandler<KeyEvent> {
 
     public void moveSnake() {
         grid.getSnake().move();
+    }
+
+    public void ifEatFood() {
+        grid.eatFood();
     }
 }

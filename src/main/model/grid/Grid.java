@@ -15,8 +15,7 @@ import static main.constant.Constants.*;
  * @date 2022-05-08
  */
 public class Grid {
-    private final int width;
-    private final int height;
+
     private int score;
 
     private Node food;
@@ -25,21 +24,11 @@ public class Grid {
 
     private GameStatus status;
 
-    public Grid(int width, int height) {
-        this.width = width;
-        this.height = height;
+    public Grid() {
         status = GameStatus.RUNNING;
         snake = new Snake();
         score = 0;
         createFood();
-    }
-
-    public int getWidth() {
-        return width;
-    }
-
-    public int getHeight() {
-        return height;
     }
 
     public Snake getSnake() {
@@ -73,8 +62,11 @@ public class Grid {
         return score;
     }
 
-    public void nextRound() {
-
+    public void eatFood() {
+        if (snake.isCollidedWith(food)) {
+            snake.addLength();
+            createFood();
+        }
     }
 }
 

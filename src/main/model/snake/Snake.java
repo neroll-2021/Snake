@@ -48,14 +48,34 @@ public class Snake {
     }*/
 
     public void addLength() {
+        ListIterator<Node> iterator = body.listIterator(body.size() - 1);
+        Node tail = body.getLast();
+        Node lastSecond = iterator.previous();
+        int x = tail.getX();
+        int y = tail.getY();
+        if (tail.getX() == lastSecond.getX()) {
+            if (tail.getY() < lastSecond.getY()) {
+                y--;
+            } else {
+                y++;
+            }
+        } else if (tail.getY() == lastSecond.getY()) {
+            if (tail.getX() < lastSecond.getX()) {
+                x--;
+            } else {
+                x++;
+            }
+        }
 
+        Node newTail = new Node(x, y);
+        body.addLast(newTail);
     }
 
     /* 当用户输入的方向与当前蛇的运动方向不相反时，更新当前方向 */
     public void setDirection(Direction newDirection) {
-        if (!this.direction.isOppositeWith(newDirection)) {
+        if (!newDirection.isOppositeWith(this.direction)) {
             this.direction = newDirection;
-//            System.out.println("current direction:" + this.direction);
+            System.out.println("current direction:" + this.direction);
         }
     }
 
@@ -75,7 +95,7 @@ public class Snake {
         body.removeLast();
     }
 
-    private boolean isCollidedWith(Node node) {
+    public boolean isCollidedWith(Node node) {
         return getHead().isOverlappedWith(node);
     }
 
