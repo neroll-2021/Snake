@@ -23,4 +23,9 @@ public class Constants {
     public static final int INITIAL_POS_Y = 18; // 蛇头的起始Y坐标
 
     public static final int INITIAL_LENGTH = 3; // 蛇的起始长度
+
+    public static final int ROUND_INTERVAL = 500; // 游戏每帧的间隔时间，单位为毫秒
+
+    public static final int GAME_OVER_X = 6;
+    public static final int GAME_OVER_Y = 8;
 }

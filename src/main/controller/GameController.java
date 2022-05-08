@@ -3,12 +3,14 @@ package main.controller;
 import static main.constant.Constants.GAME_HEIGHT;
 import static main.constant.Constants.GAME_WIDTH;
 
+
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import main.model.grid.Grid;
 import main.model.snake.Direction;
 import main.model.snake.Node;
+import main.view.GameView;
 
 import java.util.LinkedList;
 
@@ -21,9 +23,11 @@ import java.util.LinkedList;
 public class GameController implements EventHandler<KeyEvent> {
 
     private final Grid grid;
+    private final GameView view;
 
-    public GameController() {
+    public GameController(GameView view) {
         grid = new Grid(GAME_WIDTH, GAME_HEIGHT);
+        this.view = view;
     }
 
     @Override
@@ -49,7 +53,23 @@ public class GameController implements EventHandler<KeyEvent> {
         return grid.getFood();
     }
 
+    public void repaintScreen() {
+        view.paintScreen();
+    }
+
+    public void paintGameOver() {
+        view.paintGameOver();
+    }
+
     public int getScore() {
         return grid.getScore();
+    }
+
+    public boolean snakeIsDead() {
+        return grid.getSnake().isDead();
+    }
+
+    public void moveSnake() {
+        grid.getSnake().move();
     }
 }

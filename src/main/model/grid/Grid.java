@@ -3,7 +3,6 @@ package main.model.grid;
 import main.model.snake.Node;
 import main.model.snake.Snake;
 
-import java.util.LinkedList;
 import java.util.ListIterator;
 import java.util.Random;
 
@@ -18,7 +17,6 @@ import static main.constant.Constants.*;
 public class Grid {
     private final int width;
     private final int height;
-    private final boolean[][] grid;
     private int score;
 
     private Node food;
@@ -30,7 +28,6 @@ public class Grid {
     public Grid(int width, int height) {
         this.width = width;
         this.height = height;
-        this.grid = new boolean[height][width];
         status = GameStatus.RUNNING;
         snake = new Snake();
         score = 0;
@@ -59,7 +56,7 @@ public class Grid {
         Node snakeBodyNode;
         while (iterator.hasNext()) {
             snakeBodyNode = iterator.next();
-            while (snakeBodyNode.isOverlapWith(food)) {
+            while (snakeBodyNode.isOverlappedWith(food)) {
                 x = random.nextInt(GAME_WIDTH / NODE_LENGTH);
                 y = random.nextInt(GAME_HEIGHT / NODE_LENGTH);
                 food = new Node(x, y);
@@ -74,6 +71,10 @@ public class Grid {
 
     public int getScore() {
         return score;
+    }
+
+    public void nextRound() {
+
     }
 }
 

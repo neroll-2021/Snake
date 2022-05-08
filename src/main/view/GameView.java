@@ -5,6 +5,8 @@ import static main.constant.Constants.WINDOW_HEIGHT;
 import static main.constant.Constants.GAME_WIDTH;
 import static main.constant.Constants.GAME_HEIGHT;
 import static main.constant.Constants.NODE_LENGTH;
+import static main.constant.Constants.GAME_OVER_X;
+import static main.constant.Constants.GAME_OVER_Y;
 
 import javafx.application.Application;
 import javafx.collections.ObservableList;
@@ -25,6 +27,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import main.controller.GameController;
+import main.model.grid.Round;
 
 import java.util.LinkedList;
 import java.util.ListIterator;
@@ -37,12 +40,16 @@ import java.util.ListIterator;
 public class GameView extends Application {
 
     private final GameController controller;
+    private final Canvas canvas;
+    private final GraphicsContext context;
 
     public GameView() {
-        controller = new GameController();
+        controller = new GameController(this);
+        canvas = new Canvas();
+        context = canvas.getGraphicsContext2D();
     }
 
-    public void paintScreen(GraphicsContext context) {
+    public void paintScreen() {
 
         context.setFill(Color.BLACK);
         context.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
@@ -63,6 +70,12 @@ public class GameView extends Application {
                             NODE_LENGTH, NODE_LENGTH);
     }
 
+    public void paintGameOver() {
+        context.setFill(Color.WHITE);
+        context.setFont(Font.font("verdana", FontWeight.NORMAL, FontPosture.REGULAR, 50));
+        context.fillText("GAME OVER", GAME_OVER_X * NODE_LENGTH, GAME_OVER_Y * NODE_LENGTH);
+    }
+
     @Override
     public void start(Stage stage) throws Exception {
 
@@ -78,12 +91,14 @@ public class GameView extends Application {
         vlist.addAll(scoreTip, scoreText);
         vBox.setPadding(new Insets(15));
 
-        Canvas canvas = new Canvas();
         canvas.setWidth(GAME_WIDTH);
         canvas.setHeight(GAME_HEIGHT);
-        GraphicsContext context = canvas.getGraphicsContext2D();
-        paintScreen(context);
+        paintScreen();
 
+        Round round = new Round(controller);
+        Thread task = new Thread(round);
+        task.setDaemon(true);
+        task.start();
 
         HBox hBox = new HBox();
         ObservableList<Node> hlist = hBox.getChildren();
@@ -101,6 +116,7 @@ public class GameView extends Application {
     }
 
     public void startGame() {
+
         launch();
     }
 

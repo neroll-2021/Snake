@@ -1,10 +1,9 @@
 package main.model.snake;
 
 import java.util.LinkedList;
+import java.util.ListIterator;
 
-import static main.constant.Constants.INITIAL_LENGTH;
-import static main.constant.Constants.INITIAL_POS_X;
-import static main.constant.Constants.INITIAL_POS_Y;
+import static main.constant.Constants.*;
 
 /**
  * 贪吃蛇
@@ -71,8 +70,32 @@ public class Snake {
             case RIGHT -> x++;
         }
         Node head = new Node(x, y);
+        System.out.println("x=" + x + " y=" + y);
         body.addFirst(head);
         body.removeLast();
+    }
+
+    private boolean isCollidedWith(Node node) {
+        return getHead().isOverlappedWith(node);
+    }
+
+    private boolean isOutOfBound() {
+        return getHead().getX() <= 0 || getHead().getX() > GAME_WIDTH / NODE_LENGTH
+                || getHead().getY() <= 0 || getHead().getY() > GAME_HEIGHT / NODE_LENGTH;
+    }
+
+    public boolean isDead() {
+        boolean collideSelf = false;
+        ListIterator<Node> iterator = body.listIterator(1);
+        Node bodyNode;
+        while (iterator.hasNext()) {
+            bodyNode = iterator.next();
+            if (isCollidedWith(bodyNode)) {
+                collideSelf = true;
+                break;
+            }
+        }
+        return isOutOfBound() || collideSelf;
     }
 }
 

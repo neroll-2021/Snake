@@ -22,7 +22,7 @@ public class Node {
         return y;
     }
 
-    public boolean isOverlapWith(Node node) {
+    public boolean isOverlappedWith(Node node) {
         return x == node.getX() && y == node.getY();
     }
 }
