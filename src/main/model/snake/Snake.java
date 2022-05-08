@@ -5,7 +5,6 @@ import java.util.LinkedList;
 import static main.constant.Constants.INITIAL_LENGTH;
 import static main.constant.Constants.INITIAL_POS_X;
 import static main.constant.Constants.INITIAL_POS_Y;
-import static main.constant.Constants.NODE_LENGTH;
 
 /**
  * 贪吃蛇

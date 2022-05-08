@@ -40,4 +40,12 @@ public class GameController implements EventHandler<KeyEvent> {
     public LinkedList<Node> getSnakeBody() {
         return grid.getSnake().getBody();
     }
+
+    public Node getSnakeHead() {
+        return grid.getSnake().getHead();
+    }
+
+    public Node getFood() {
+        return grid.getFood();
+    }
 }

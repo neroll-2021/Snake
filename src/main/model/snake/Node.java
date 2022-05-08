@@ -21,4 +21,8 @@ public class Node {
     public int getY() {
         return y;
     }
+
+    public boolean isOverlapWith(Node node) {
+        return x == node.getX() && y == node.getY();
+    }
 }

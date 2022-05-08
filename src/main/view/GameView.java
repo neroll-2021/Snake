@@ -22,6 +22,7 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
 import main.controller.GameController;
 
 import java.util.LinkedList;
@@ -41,18 +42,24 @@ public class GameView extends Application {
     }
 
     public void paintScreen(GraphicsContext context) {
+
         context.setFill(Color.BLACK);
         context.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+
         context.setFill(Color.WHITE);
         LinkedList<main.model.snake.Node> snakeBody = controller.getSnakeBody();
         ListIterator<main.model.snake.Node> iterator = snakeBody.listIterator();
         main.model.snake.Node node;
         while (iterator.hasNext()) {
             node = iterator.next();
-            System.out.println("x=" + node.getX() + " y=" + node.getY());
+//            System.out.println("x=" + node.getX() + " y=" + node.getY());
             context.fillRect((node.getX() - 1) * NODE_LENGTH, (node.getY() - 1) * NODE_LENGTH,
                             NODE_LENGTH, NODE_LENGTH);
         }
+
+        node = controller.getFood();
+        context.fillRect((node.getX() - 1) * NODE_LENGTH, (node.getY() - 1) * NODE_LENGTH,
+                            NODE_LENGTH, NODE_LENGTH);
     }
 
     @Override
@@ -62,7 +69,6 @@ public class GameView extends Application {
         score.setFont(Font.font("verdana", FontWeight.NORMAL, FontPosture.REGULAR, 25));
 
         VBox vBox = new VBox();
-
         ObservableList<Node> vlist = vBox.getChildren();
         vlist.addAll(score);
 
@@ -84,6 +90,7 @@ public class GameView extends Application {
 
         stage.setScene(scene);
         stage.setTitle("Snake");
+        stage.setResizable(false);
         stage.show();
     }
 
