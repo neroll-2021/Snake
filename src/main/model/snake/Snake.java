@@ -1,7 +1,5 @@
 package main.model.snake;
 
-import main.constant.Constants;
-
 import java.util.LinkedList;
 
 /**
@@ -28,18 +26,20 @@ public class Snake {
     }
 
     /* 获得蛇的尾 */
+    /*
     public Node getTail() {
         return body.getLast();
-    }
+    }*/
 
     public void addLength() {
 
     }
 
     /* 当用户输入的方向与当前蛇的运动方向不相反时，更新当前方向 */
-    public void setDirection(Direction direction) {
-        if (!this.direction.isOpposite(direction)) {
-            this.direction = direction;
+    public void setDirection(Direction newDirection) {
+        if (!this.direction.isOppositeWith(newDirection)) {
+            this.direction = newDirection;
+            System.out.println("current direction:" + this.direction);
         }
     }
 
@@ -82,16 +82,4 @@ class Node {
     }
 }
 
-enum Direction {
-    UP(1), LEFT(2), RIGHT(-2), DOWN(-1);
 
-    private final int directionCode;
-
-    Direction(int directionCode) {
-        this.directionCode = directionCode;
-    }
-
-    public boolean isOpposite(Direction direction) {
-        return this.directionCode == - direction.directionCode;
-    }
-}
