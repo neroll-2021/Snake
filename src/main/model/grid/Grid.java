@@ -2,6 +2,12 @@ package main.model.grid;
 
 import main.model.snake.Snake;
 
+/**
+ * 模型类
+ * @author Neroll
+ * @version 0.1.0
+ * @date 2022-05-08
+ */
 public class Grid {
     private final int width;
     private final int height;

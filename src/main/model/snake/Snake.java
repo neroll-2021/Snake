@@ -2,10 +2,16 @@ package main.model.snake;
 
 import java.util.LinkedList;
 
+import static main.constant.Constants.INITIAL_LENGTH;
+import static main.constant.Constants.INITIAL_POS_X;
+import static main.constant.Constants.INITIAL_POS_Y;
+import static main.constant.Constants.NODE_LENGTH;
+
 /**
  * 贪吃蛇
  * @author Neroll
  * @version 0.1.0
+ * @date 2022-05-08
  */
 public class Snake {
 
@@ -17,12 +23,27 @@ public class Snake {
 
     public Snake() {
         body = new LinkedList<>();
+        initBody();
+        Node node = new Node(18, 10);
+        body.addFirst(node);
+        node = new Node(17, 10);
         direction = Direction.RIGHT; // 游戏开始时默认向右运动
+    }
+
+    private void initBody() {
+        for (int i = 0; i < INITIAL_LENGTH; i++) {
+            Node node = new Node(INITIAL_POS_X - i * NODE_LENGTH, INITIAL_POS_Y);
+            body.addLast(node);
+        }
     }
 
     /* 获得蛇的头 */
     public Node getHead() {
         return body.getFirst();
+    }
+
+    public LinkedList<Node> getBody() {
+        return body;
     }
 
     /* 获得蛇的尾 */
@@ -39,7 +60,7 @@ public class Snake {
     public void setDirection(Direction newDirection) {
         if (!this.direction.isOppositeWith(newDirection)) {
             this.direction = newDirection;
-            System.out.println("current direction:" + this.direction);
+//            System.out.println("current direction:" + this.direction);
         }
     }
 
@@ -59,27 +80,6 @@ public class Snake {
     }
 }
 
-/**
- * 画面的最小单位
- * @author Neroll
- * @version 0.1.0
- */
-class Node {
-    private final int x;
-    private final int y;
 
-    public Node(int x, int y) {
-        this.x = x;
-        this.y = y;
-    }
-
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
-    }
-}
 
 
