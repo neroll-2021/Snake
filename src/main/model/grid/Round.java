@@ -2,7 +2,7 @@ package main.model.grid;
 
 import main.controller.GameController;
 
-import static main.constant.Constants.ROUND_INTERVAL;
+import static main.constant.Constants.*;
 
 public class Round implements Runnable {
 
@@ -21,7 +21,16 @@ public class Round implements Runnable {
                     controller.setHasMoved();
                     controller.ifEatFood();
                     controller.repaintScreen();
-                    Thread.sleep(ROUND_INTERVAL);
+                    if (controller.getScore() <= INIT_SCORE)
+                        Thread.sleep(INIT_ROUND_INTERVAL);
+                    else if (controller.getScore() <= SLOW_SCORE)
+                        Thread.sleep(SLOW_ROUND_INTERVAL);
+                    else if (controller.getScore() <= NORM_SCORE)
+                        Thread.sleep(NORM_ROUND_INTERVAL);
+                    else if (controller.getScore() <= FAST_SCORE)
+                        Thread.sleep(FASTER_ROUND_INTERVAL);
+                    else
+                        Thread.sleep(FAST_ROUND_INTERVAL);
                 } else {
                     System.out.println("snake dead");
                     controller.paintGameOver();

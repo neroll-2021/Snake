@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d1b467eb-2fd2-4bbc-9b2f-07f603974461" name="Changes" comment="" />
+    <list default="true" id="d1b467eb-2fd2-4bbc-9b2f-07f603974461" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/snake/main/model/grid/Round.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/snake/main/model/grid/Round.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/constant/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/constant/Constants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/model/grid/Round.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/model/grid/Round.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -71,7 +76,7 @@
       <workItem from="1651999625470" duration="3385000" />
       <workItem from="1652008785421" duration="9184000" />
       <workItem from="1652022139552" duration="10407000" />
-      <workItem from="1652059408961" duration="9502000" />
+      <workItem from="1652059408961" duration="13371000" />
     </task>
     <servers />
   </component>
