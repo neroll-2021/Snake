@@ -9,8 +9,7 @@ import static java.lang.Math.abs;
 /**
  * 贪吃蛇
  * @author Neroll
- * @version 0.1.0
- * @date 2022-05-08
+ * @version 0.1.0 2022-05-08
  */
 public class Snake {
 
@@ -20,7 +19,7 @@ public class Snake {
     /* 贪吃蛇当前的运动方向 */
     private Direction direction;
 
-    /* 用户是否按下方向键 */
+    /* 记录用户是否按下方向键，防止用户在一个回合内多次改变蛇的方向 */
     private boolean hasMoved;
 
     /* 记录移动前蛇尾的位置 */
@@ -34,6 +33,7 @@ public class Snake {
         direction = Direction.RIGHT; // 游戏开始时默认向右运动
     }
 
+    /* 开始时蛇的长度为 3 */
     private void initBody() {
         for (int i = 0; i < INITIAL_LENGTH; i++) {
             Node node = new Node(INITIAL_POS_X - i, INITIAL_POS_Y);
@@ -84,6 +84,7 @@ public class Snake {
 
         Node newTail = new Node(x, y);*/
 
+        /* 在蛇尾移动前所处的位置新增一个单位块 */
         Node newTail = new Node(lastTail.getX(), lastTail.getY());
         lastTail = newTail;
         body.addLast(newTail);
@@ -93,7 +94,7 @@ public class Snake {
     public void setDirection(Direction newDirection) {
         if (!newDirection.isOppositeWith(this.direction) && !hasMoved) {
             this.direction = newDirection;
-            hasMoved = true;
+            hasMoved = true; // 用户已经按下了按键
             System.out.println("current direction:" + this.direction);
         }
     }
@@ -132,6 +133,7 @@ public class Snake {
         return false;
     }
 
+    /* 判断蛇是否超出游戏边界 */
     private boolean isOutOfBound() {
         if (getHead().getX() <= 0)
             return true;
@@ -148,6 +150,7 @@ public class Snake {
         boolean collideSelf = false;
         ListIterator<Node> iterator = body.listIterator(1);
         Node bodyNode;
+        /* 判断蛇是否吃到了自己 */
         while (iterator.hasNext()) {
             bodyNode = iterator.next();
             if (isCollidedWith(bodyNode)) {

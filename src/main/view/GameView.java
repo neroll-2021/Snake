@@ -34,8 +34,7 @@ import java.util.ListIterator;
 
 /**
  * 游戏视图类，展示游戏窗口和游戏界面
- * @author Neroll
- * @date 2022-05-08
+ * @author Neroll 2022-05-08
  */
 public class GameView extends Application {
 
@@ -81,9 +80,11 @@ public class GameView extends Application {
         context.fillRect((node.getX() - 1) * NODE_LENGTH, (node.getY() - 1) * NODE_LENGTH,
                             NODE_LENGTH, NODE_LENGTH);
 
+        /* 显示分数 */
         scoreText.setText(controller.getScore() + "");
     }
 
+    /* 显示 GAME OVER */
     public void paintGameOver() {
         context.setFill(Color.AQUA);
         context.setFont(Font.font("verdana", FontWeight.NORMAL, FontPosture.REGULAR, 50));
@@ -100,6 +101,7 @@ public class GameView extends Application {
         scoreText = new Text(score + "");
         scoreText.setFont(Font.font("verdana", FontWeight.NORMAL, FontPosture.REGULAR, 40));
 
+        /* 纵向布局 */
         VBox vBox = new VBox();
         ObservableList<Node> vlist = vBox.getChildren();
         vlist.addAll(scoreTip, scoreText);
@@ -109,11 +111,13 @@ public class GameView extends Application {
         canvas.setHeight(GAME_HEIGHT);
 //        paintScreen();
 
+        /* 启动游戏的线程，让蛇动起来 */
         Round round = new Round(controller);
         Thread task = new Thread(round);
-        task.setDaemon(true);
+        task.setDaemon(true); // 设置为守护线程，游戏退出(窗口关闭)时自动结束
         task.start();
 
+        /* 横向布局 */
         HBox hBox = new HBox();
         ObservableList<Node> hlist = hBox.getChildren();
         hlist.addAll(canvas, vBox);

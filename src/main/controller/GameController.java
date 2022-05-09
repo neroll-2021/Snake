@@ -16,8 +16,7 @@ import java.util.LinkedList;
 /**
  * 控制器类，将视图类的事件传给模型类
  * @author Neroll
- * @version 0.1.0
- * @date 2022-05-08
+ * @version 0.1.0 2022-05-08
  */
 public class GameController implements EventHandler<KeyEvent> {
 
