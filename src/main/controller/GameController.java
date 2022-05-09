@@ -48,6 +48,10 @@ public class GameController implements EventHandler<KeyEvent> {
         return grid.getSnake().getHead();
     }
 
+    public Node getSnakeTail() {
+        return grid.getSnake().getTail();
+    }
+
     public Node getFood() {
         return grid.getFood();
     }

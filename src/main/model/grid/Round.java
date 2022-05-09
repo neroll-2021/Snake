@@ -19,11 +19,9 @@ public class Round implements Runnable {
                 controller.moveSnake();
                 if (!controller.snakeIsDead()) {
                     controller.setHasMoved();
-
                     controller.ifEatFood();
                     controller.repaintScreen();
                     Thread.sleep(ROUND_INTERVAL);
-                    System.out.println("eeesss");
                 } else {
                     System.out.println("snake dead");
                     controller.paintGameOver();

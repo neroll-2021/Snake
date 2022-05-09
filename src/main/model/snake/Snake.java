@@ -20,11 +20,16 @@ public class Snake {
     /* 贪吃蛇当前的运动方向 */
     private Direction direction;
 
+    /* 用户是否按下方向键 */
     private boolean hasMoved;
+
+    /* 记录移动前蛇尾的位置 */
+    private Node lastTail;
 
     public Snake() {
         body = new LinkedList<>();
         initBody();
+        lastTail = body.getLast();
         hasMoved = false;
         direction = Direction.RIGHT; // 游戏开始时默认向右运动
     }
@@ -41,6 +46,10 @@ public class Snake {
         return body.getFirst();
     }
 
+    public Node getTail() {
+        return body.getLast();
+    }
+
     public LinkedList<Node> getBody() {
         return body;
     }
@@ -49,18 +58,16 @@ public class Snake {
         return hasMoved;
     }
 
-    /* 获得蛇的尾 */
-    /*
-    public Node getTail() {
-        return body.getLast();
-    }*/
-
     public void addLength() {
-        ListIterator<Node> iterator = body.listIterator(body.size() - 1);
-        Node tail = body.getLast();
+        /*
+        ListIterator<Node> iterator = body.listIterator(body.size());
+        Node tail = iterator.previous();
         Node lastSecond = iterator.previous();
         int x = tail.getX();
-        int y = tail.getY();
+        int y = tail.getY();*/
+
+        /* 根据蛇身体的最后一个方块和倒数第二个方块的位置判断新增加的方块的位置 */
+        /*
         if (tail.getX() == lastSecond.getX()) {
             if (tail.getY() < lastSecond.getY()) {
                 y--;
@@ -75,7 +82,10 @@ public class Snake {
             }
         }
 
-        Node newTail = new Node(x, y);
+        Node newTail = new Node(x, y);*/
+
+        Node newTail = new Node(lastTail.getX(), lastTail.getY());
+        lastTail = newTail;
         body.addLast(newTail);
     }
 
@@ -104,8 +114,10 @@ public class Snake {
         }
         Node head = new Node(x, y);
         System.out.println("x=" + x + " y=" + y);
+        lastTail = body.getLast();
         body.removeLast();
         body.addFirst(head);
+
     }
 
     public boolean isCollidedWith(Node node) {
