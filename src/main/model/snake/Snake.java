@@ -49,10 +49,6 @@ public class Snake {
         return hasMoved;
     }
 
-    public void setHasMoved() {
-        hasMoved = false;
-    }
-
     /* 获得蛇的尾 */
     /*
     public Node getTail() {
@@ -80,7 +76,7 @@ public class Snake {
         }
 
         Node newTail = new Node(x, y);
-        body.addFirst(newTail);
+        body.addLast(newTail);
     }
 
     /* 当用户输入的方向与当前蛇的运动方向不相反时，更新当前方向 */
@@ -90,6 +86,10 @@ public class Snake {
             hasMoved = true;
             System.out.println("current direction:" + this.direction);
         }
+    }
+
+    public void setHasMoved() {
+        hasMoved = false;
     }
 
     /* 蛇沿着当前方向前进一格 */

@@ -51,13 +51,23 @@ public class GameView extends Application {
 
     public void paintScreen() {
 
+        /* 将画面填充为黑色 */
         context.setFill(Color.BLACK);
         context.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
 
-        context.setFill(Color.WHITE);
+        /* 获取蛇身的迭代器 */
         LinkedList<main.model.snake.Node> snakeBody = controller.getSnakeBody();
         ListIterator<main.model.snake.Node> iterator = snakeBody.listIterator();
         main.model.snake.Node node;
+
+        /* 绘制蛇的头 */
+        context.setFill(Color.LIGHTGREEN);
+        main.model.snake.Node snakeHead = iterator.next();
+        context.fillRect((snakeHead.getX() - 1) * NODE_LENGTH, (snakeHead.getY() - 1) * NODE_LENGTH,
+                        NODE_LENGTH, NODE_LENGTH);
+
+        /* 绘制蛇的身体 */
+        context.setFill(Color.WHITE);
         while (iterator.hasNext()) {
             node = iterator.next();
 //            System.out.println("x=" + node.getX() + " y=" + node.getY());
@@ -65,6 +75,7 @@ public class GameView extends Application {
                             NODE_LENGTH, NODE_LENGTH);
         }
 
+        /* 绘制食物 */
         node = controller.getFood();
         context.fillRect((node.getX() - 1) * NODE_LENGTH, (node.getY() - 1) * NODE_LENGTH,
                             NODE_LENGTH, NODE_LENGTH);

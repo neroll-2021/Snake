@@ -16,10 +16,10 @@ public class Round implements Runnable {
     public void run() {
         try {
             while (!Thread.currentThread().isInterrupted()) {
+                controller.moveSnake();
                 if (!controller.snakeIsDead()) {
                     controller.setHasMoved();
-//                    if (!controller.snakeHasMoved())
-                        controller.moveSnake();
+
                     controller.ifEatFood();
                     controller.repaintScreen();
                     Thread.sleep(ROUND_INTERVAL);

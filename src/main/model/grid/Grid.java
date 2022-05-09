@@ -68,6 +68,10 @@ public class Grid {
             snake.addLength();
         }
     }
+
+    public void addScore(int score) {
+        this.score += score;
+    }
 }
 
 enum GameStatus {
