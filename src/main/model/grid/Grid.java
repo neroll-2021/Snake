@@ -64,8 +64,8 @@ public class Grid {
 
     public void eatFood() {
         if (snake.isCollidedWith(food)) {
-            snake.addLength();
             createFood();
+            snake.addLength();
         }
     }
 }

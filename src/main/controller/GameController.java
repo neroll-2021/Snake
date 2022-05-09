@@ -76,4 +76,12 @@ public class GameController implements EventHandler<KeyEvent> {
     public void ifEatFood() {
         grid.eatFood();
     }
+
+    public boolean snakeHasMoved() {
+        return grid.getSnake().hasMoved();
+    }
+
+    public void setHasMoved() {
+        grid.getSnake().setHasMoved();
+    }
 }

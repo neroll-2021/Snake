@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.ListIterator;
 
 import static main.constant.Constants.*;
+import static java.lang.Math.abs;
 
 /**
  * 贪吃蛇
@@ -19,9 +20,12 @@ public class Snake {
     /* 贪吃蛇当前的运动方向 */
     private Direction direction;
 
+    private boolean hasMoved;
+
     public Snake() {
         body = new LinkedList<>();
         initBody();
+        hasMoved = false;
         direction = Direction.RIGHT; // 游戏开始时默认向右运动
     }
 
@@ -39,6 +43,14 @@ public class Snake {
 
     public LinkedList<Node> getBody() {
         return body;
+    }
+
+    public boolean hasMoved() {
+        return hasMoved;
+    }
+
+    public void setHasMoved() {
+        hasMoved = false;
     }
 
     /* 获得蛇的尾 */
@@ -68,13 +80,14 @@ public class Snake {
         }
 
         Node newTail = new Node(x, y);
-        body.addLast(newTail);
+        body.addFirst(newTail);
     }
 
     /* 当用户输入的方向与当前蛇的运动方向不相反时，更新当前方向 */
     public void setDirection(Direction newDirection) {
-        if (!newDirection.isOppositeWith(this.direction)) {
+        if (!newDirection.isOppositeWith(this.direction) && !hasMoved) {
             this.direction = newDirection;
+            hasMoved = true;
             System.out.println("current direction:" + this.direction);
         }
     }
@@ -91,17 +104,32 @@ public class Snake {
         }
         Node head = new Node(x, y);
         System.out.println("x=" + x + " y=" + y);
-        body.addFirst(head);
         body.removeLast();
+        body.addFirst(head);
     }
 
     public boolean isCollidedWith(Node node) {
         return getHead().isOverlappedWith(node);
     }
 
+    public boolean isAdjacentWith(Node node) {
+        if (abs(getHead().getX() - node.getX()) == 1 && getHead().getY() == node.getY())
+            return true;
+        if (abs(getHead().getY() - node.getY()) == 1 && getHead().getX() == node.getX())
+            return true;
+        return false;
+    }
+
     private boolean isOutOfBound() {
-        return getHead().getX() <= 0 || getHead().getX() > GAME_WIDTH / NODE_LENGTH
-                || getHead().getY() <= 0 || getHead().getY() > GAME_HEIGHT / NODE_LENGTH;
+        if (getHead().getX() <= 0)
+            return true;
+        if (getHead().getX() > GAME_WIDTH / NODE_LENGTH)
+            return true;
+        if (getHead().getY() <= 0)
+            return true;
+        if (getHead().getY() > GAME_HEIGHT / NODE_LENGTH)
+            return true;
+        return false;
     }
 
     public boolean isDead() {

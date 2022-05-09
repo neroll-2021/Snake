@@ -71,7 +71,7 @@ public class GameView extends Application {
     }
 
     public void paintGameOver() {
-        context.setFill(Color.WHITE);
+        context.setFill(Color.AQUA);
         context.setFont(Font.font("verdana", FontWeight.NORMAL, FontPosture.REGULAR, 50));
         context.fillText("GAME OVER", GAME_OVER_X * NODE_LENGTH, GAME_OVER_Y * NODE_LENGTH);
     }
@@ -116,7 +116,6 @@ public class GameView extends Application {
     }
 
     public void startGame() {
-
         launch();
     }
 
