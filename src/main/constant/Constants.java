@@ -28,4 +28,6 @@ public class Constants {
 
     public static final int GAME_OVER_X = 6;
     public static final int GAME_OVER_Y = 8;
+
+    public static final int SCORE_INCREMENT = 10;
 }

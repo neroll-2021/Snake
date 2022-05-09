@@ -37,8 +37,8 @@ public class Grid {
 
     public void createFood() {
         Random random = new Random();
-        int x = random.nextInt(GAME_WIDTH / NODE_LENGTH);
-        int y = random.nextInt(GAME_HEIGHT / NODE_LENGTH);
+        int x = random.nextInt(1, GAME_WIDTH / NODE_LENGTH);
+        int y = random.nextInt(1, GAME_HEIGHT / NODE_LENGTH);
         food = new Node(x, y);
 
         ListIterator<Node> iterator = snake.getBody().listIterator();
@@ -46,8 +46,8 @@ public class Grid {
         while (iterator.hasNext()) {
             snakeBodyNode = iterator.next();
             while (snakeBodyNode.isOverlappedWith(food)) {
-                x = random.nextInt(GAME_WIDTH / NODE_LENGTH);
-                y = random.nextInt(GAME_HEIGHT / NODE_LENGTH);
+                x = random.nextInt(1, GAME_WIDTH / NODE_LENGTH);
+                y = random.nextInt(1, GAME_HEIGHT / NODE_LENGTH);
                 food = new Node(x, y);
             }
         }
@@ -65,6 +65,7 @@ public class Grid {
     public void eatFood() {
         if (snake.isCollidedWith(food)) {
             createFood();
+            addScore(SCORE_INCREMENT);
             snake.addLength();
         }
     }

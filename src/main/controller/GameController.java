@@ -3,7 +3,6 @@ package main.controller;
 import static main.constant.Constants.GAME_HEIGHT;
 import static main.constant.Constants.GAME_WIDTH;
 
-
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;

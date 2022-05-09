@@ -42,6 +42,7 @@ public class GameView extends Application {
     private final GameController controller;
     private final Canvas canvas;
     private final GraphicsContext context;
+    private  Text scoreText;
 
     public GameView() {
         controller = new GameController(this);
@@ -79,6 +80,8 @@ public class GameView extends Application {
         node = controller.getFood();
         context.fillRect((node.getX() - 1) * NODE_LENGTH, (node.getY() - 1) * NODE_LENGTH,
                             NODE_LENGTH, NODE_LENGTH);
+
+        scoreText.setText(controller.getScore() + "");
     }
 
     public void paintGameOver() {
@@ -94,7 +97,7 @@ public class GameView extends Application {
         scoreTip.setFont(Font.font("verdana", FontWeight.NORMAL, FontPosture.REGULAR, 25));
 
         int score = controller.getScore();
-        Text scoreText = new Text(score + "");
+        scoreText = new Text(score + "");
         scoreText.setFont(Font.font("verdana", FontWeight.NORMAL, FontPosture.REGULAR, 40));
 
         VBox vBox = new VBox();
@@ -104,7 +107,7 @@ public class GameView extends Application {
 
         canvas.setWidth(GAME_WIDTH);
         canvas.setHeight(GAME_HEIGHT);
-        paintScreen();
+//        paintScreen();
 
         Round round = new Round(controller);
         Thread task = new Thread(round);
